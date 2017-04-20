@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        td {
+            text-align: right;
+        }
+    </style>
+    <script>
+        function calcCircunferencia() {
+            let circunferencia = document.getElementById("circunferencia");
+            let area = document.getElementById("area");
+            let raio = document.getElementById("raio");
+            circunferencia.value = raio.value * area.value;
+        }
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Informe o raio</td><td><input type="text" name="raio" id="raio"></td>
+            <td><button onclick="calcCircunferencia()">OK</button></td>
+        </tr>
+        <tr><td>Área do círculo</td><td><input type="text" name="area" id="area"></td></tr>
+        <tr><td>Circunferência</td><td><input type="text" name="circunferencia" id="circunferencia"></td></tr>
+    </table>
+<body>
+</html>
