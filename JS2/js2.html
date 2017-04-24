@@ -11,8 +11,9 @@
         function calcCircunferencia() {
             let circunferencia = document.getElementById("circunferencia");
             let area = document.getElementById("area");
-            let raio = document.getElementById("raio");
-            circunferencia.value = raio.value * area.value;
+            let raio = document.getElementById("raio").value;
+            area.value = (Math.PI * raio * raio).toFixed(2);
+            circunferencia.value = (2 * Math.PI * raio).toFixed(2);
         }
     </script>
 </head>
