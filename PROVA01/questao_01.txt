@@ -1,0 +1,18 @@
+1:
+    Linha: 3
+    Erro: <head> dentro da <body>
+    Correção: Mover a <head> e o seu conteúdo para antes do <body>
+2:
+    Linha: 4
+    Erro: Uso da tag <comment>
+    Correção: Comentários em html são feitos usando
+
+3:
+    Linha: 10
+    Erro: Usando a propriedade width como seletor
+    Correção: Trocar para p #para da linha 11 e vice-versa
+
+4:
+    Linha: 14
+    Erro: Conteúdo dentro da <head>
+    Correção: Conteúdo deve ser movido para dentro da <body>
