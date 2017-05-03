@@ -1,0 +1,19 @@
+36fa8cf Questao 3
+99b0aa0 Questao 2
+7f4c2ec Questao 1
+2e6478a JS3
+f05ac71 Correção no JS2
+a8cfbfd JS2
+23e0c38 JS1
+90e15a8 CSS3
+ae09a7b CSS2
+4eec86c CSS1
+c84e513 Inicialização do repositorio
+
+
+a)
+Para ver a situação atual do seu repositório local do git.
+Quais arquivos foram modificados, quantos commits há de diferença entre o repositório local e o remoto.
+
+b)
+Para adicionar arquivos, extensões e etc que não devem ser "tracked".
