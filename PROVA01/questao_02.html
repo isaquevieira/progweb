@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script>
+        function calcular() {
+            let raio = document.getElementById('raio').value;
+            let areaInput = document.getElementById('area');
+            let volumeInput = document.getElementById('volume');
+
+            areaInput.value = (4 * Math.PI * raio * raio).toFixed(2);
+            volumeInput.value = ((4 * Math.PI * raio * raio * raio)/3).toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    Raio da esfera<input type="text" id="raio"><button onclick="calcular()">Calcular!</button><br>
+    Área<input type="text" id="area"><br>
+    Volume<input type="text" id="volume"><br>
+<body>
+</html>
