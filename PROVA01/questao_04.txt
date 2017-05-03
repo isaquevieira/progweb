@@ -1,0 +1,11 @@
+    Hoisting ocorre quando uma variável é utilizada antes de ser declarada.
+É possível pois o javascript move todas as declarações para o topo do escopo.
+    Ele influencia na compreensão do código porquê se o programador não estiver
+atento ao local onde foram declaradas as variáveis pode parecer um comportamento inesperado.
+
+Exemplo:
+    console.log(a);
+    var a = 5;
+
+    A variável "a" vai ter o tipo undefined quando for mostrada no console
+    porquê a declaração foi movida para cima mas a atribuição não.
