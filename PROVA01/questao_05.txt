@@ -17,3 +17,7 @@ Quais arquivos foram modificados, quantos commits há de diferença entre o repo
 
 b)
 Para adicionar arquivos, extensões e etc que não devem ser "tracked".
+
+Nota: 2.0
+Logs e conceitos reportados corretamente.
+
