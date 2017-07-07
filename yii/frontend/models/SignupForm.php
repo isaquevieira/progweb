@@ -3,6 +3,8 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
+use common\models\Curso;
+use yii\log\Logger;
 
 /**
  * Signup form
@@ -12,6 +14,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $id_curso;
 
 
     /**
@@ -33,6 +36,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['id_curso', 'required'],
+            [['id_curso'], 'exist', 'skipOnError' => true, 'targetClass' => Curso::className(), 'targetAttribute' => ['id_curso' => 'id']]
         ];
     }
 
@@ -46,13 +52,16 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
+        $curso = Curso::findOne($this->id_curso);
+        log($curso->id);
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->id_curso = $curso->id;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
+
+        return $user->save(false) ? $user : null;
     }
 }
