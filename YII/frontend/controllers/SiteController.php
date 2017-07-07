@@ -138,7 +138,8 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $date = date("F j, Y, g:i a");
+        return $this->render('about', ['date'=> $date]);
     }
 
     /**
