@@ -49,11 +49,17 @@ class CursoController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id = null)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if ($id) {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
+        else {
+            $model = Curso::findOne(['sigla' => 'CC']);
+            return $this->render('view', ['model' => $model]);
+        }
     }
 
     /**
