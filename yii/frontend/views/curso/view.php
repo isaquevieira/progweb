@@ -31,6 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'nome',
             'sigla',
             'descricao:ntext',
+            [
+                'label'  => 'Número de alunos',
+                'value'  => $numero_de_alunos
+            ],
         ],
     ]) ?>
 

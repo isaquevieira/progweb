@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Curso;
+use common\models\User;
 use common\models\CursoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -51,15 +52,15 @@ class CursoController extends Controller
      */
     public function actionView($id = null)
     {
+        $numero_de_alunos = 0;
         if ($id) {
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
+            $model = $this->findModel($id);
         }
         else {
             $model = Curso::findOne(['sigla' => 'CC']);
-            return $this->render('view', ['model' => $model]);
         }
+        $numero_de_alunos = User::find()->where(['id_curso' => $model->id])->count();
+        return $this->render('view', ['model' => $model, 'numero_de_alunos' => $numero_de_alunos]);
     }
 
     /**
