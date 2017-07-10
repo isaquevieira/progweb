@@ -9,3 +9,6 @@ Exemplo:
 
     A variável "a" vai ter o tipo undefined quando for mostrada no console
     porquê a declaração foi movida para cima mas a atribuição não.
+
+Nota: 2.0
+Descrição de hoisting e código corretos.

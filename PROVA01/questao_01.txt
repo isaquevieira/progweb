@@ -16,3 +16,8 @@
     Linha: 14
     Erro: Conteúdo dentro da <head>
     Correção: Conteúdo deve ser movido para dentro da <body>
+
+Nota: 1.5
+Apenas 3 erros foram reportados corretamente.
+
+
