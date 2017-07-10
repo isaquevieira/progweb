@@ -42,6 +42,23 @@ class SignupForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Nome de Usuário',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => 'Email',
+            'status' => 'Status',
+            'created_at' => 'Criado em',
+            'updated_at' => 'Updated At',
+            'id_curso' => 'Curso',
+            'password' => 'Senha',
+        ];
+    }
+
     /**
      * Signs user up.
      *
@@ -55,7 +72,6 @@ class SignupForm extends Model
 
         $user = new User();
         $curso = Curso::findOne($this->id_curso);
-        log($curso->id);
         $user->username = $this->username;
         $user->email = $this->email;
         $user->id_curso = $curso->id;

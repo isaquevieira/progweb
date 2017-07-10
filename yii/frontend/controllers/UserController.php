@@ -4,10 +4,12 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\User;
+use common\models\Curso;
 use common\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -17,6 +19,29 @@ class UserController extends Controller
     /**
      * @inheritdoc
      */
+
+     public function rules()
+     {
+         return [
+             ['username', 'trim'],
+             ['username', 'required'],
+             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+             ['username', 'string', 'min' => 2, 'max' => 255],
+
+             ['email', 'trim'],
+             ['email', 'required'],
+             ['email', 'email'],
+             ['email', 'string', 'max' => 255],
+             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+
+             ['password', 'required'],
+             ['password', 'string', 'min' => 6],
+
+             ['id_curso', 'required'],
+             [['id_curso'], 'exist', 'skipOnError' => true, 'targetClass' => Curso::className(), 'targetAttribute' => ['id_curso' => 'id']]
+         ];
+     }
+
     public function behaviors()
     {
         return [
@@ -61,18 +86,18 @@ class UserController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
+    // public function actionCreate()
+    // {
+    //     $model = new User();
+    //
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->id]);
+    //     } else {
+    //         return $this->render('create', [
+    //             'model' => $model,
+    //         ]);
+    //     }
+    // }
 
     /**
      * Updates an existing User model.
@@ -83,12 +108,14 @@ class UserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $cursos = ArrayHelper::map(Curso::find()->all(), 'id', 'nome');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'cursos' => $cursos,
             ]);
         }
     }
