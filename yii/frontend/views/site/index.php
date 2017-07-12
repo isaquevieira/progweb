@@ -15,7 +15,7 @@ $this->title = 'Instituto de Computação';
                Como todo instituto acadêmico o IComp atua no ensino, pesquisa e extensão,
                 além de desempenhar atividades administrativas.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><?= Html::a('Jogar', ['jogada/play'], ['class' => ['btn', 'btn-lg', 'btn-success']]) ?></p>
     </div>
 
     <!-- <div class="body-content">

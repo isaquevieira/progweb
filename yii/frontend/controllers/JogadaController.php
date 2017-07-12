@@ -8,6 +8,7 @@ use common\models\JogadaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * JogadaController implements the CRUD actions for Jogada model.
@@ -29,30 +30,21 @@ class JogadaController extends Controller
         ];
     }
 
-    /**
-     * Lists all Jogada models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new JogadaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
 
     /**
      * Displays a single Jogada model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionPlay()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+        $searchModel = new JogadaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('play', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -61,49 +53,23 @@ class JogadaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionSave()
     {
-        $model = new Jogada();
+        if (!Yii::$app->user->isGuest) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            $pontuacao = Yii::$app->request->post('score');
+            $user = Yii::$app->user->identity->id;
+            $jogada = new Jogada();
+            $jogada->id_user = $user;
+            $jogada->pontuacao = $pontuacao;
+            $jogada->data_hora = date("F j, Y, g:i a");
+
+            if ($jogada->save()) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
-    }
-
-    /**
-     * Updates an existing Jogada model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Deletes an existing Jogada model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**
